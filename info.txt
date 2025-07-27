@@ -1,0 +1,9 @@
+# Kloon de bestanden naar een map
+# Installeer dependencies
+npm install
+
+# Start lokaal
+npm start
+
+# Of met Docker
+docker-compose up -d
