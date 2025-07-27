@@ -5,13 +5,13 @@ services:
     build: .
     container_name: mathjs-api-server
     ports:
-      - "3030:3030"
+      - "3031:3031"
     environment:
       - NODE_ENV=production
-      - PORT=3030
+      - PORT=3031
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3030/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }).on('error', () => process.exit(1))"]
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3031/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) }).on('error', () => process.exit(1))"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -19,7 +19,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.mathjs-api.rule=Host(`mathjs-api.yourdomain.com`)"
-      - "traefik.http.services.mathjs-api.loadbalancer.server.port=3030"
+      - "traefik.http.services.mathjs-api.loadbalancer.server.port=3031"
     networks:
       - mathjs-network
 

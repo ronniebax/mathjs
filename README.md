@@ -24,10 +24,10 @@ Evaluate a mathematical expression via query parameters.
 
 **Example:**
 ```bash
-curl "http://localhost:3030/v4/?expr=2*(7-3)"
+curl "http://localhost:3031/v4/?expr=2*(7-3)"
 # Response: 8
 
-curl "http://localhost:3030/v4/?expr=15.4/12.8&precision=2"
+curl "http://localhost:3031/v4/?expr=15.4/12.8&precision=2"
 # Response: 1.2
 ```
 
@@ -55,13 +55,13 @@ Evaluate a mathematical expression via JSON body.
 
 ```bash
 # Basic calculation
-curl -X POST http://localhost:3030/v4/ \
+curl -X POST http://localhost:3031/v4/ \
   -H "Content-Type: application/json" \
   -d '{"expr": "5*4", "precision": 1}'
 # Response: {"result": "20", "error": null}
 
 # With precision
-curl -X POST http://localhost:3030/v4/ \
+curl -X POST http://localhost:3031/v4/ \
   -H "Content-Type: application/json" \
   -d '{"expr": "15.4/12.8", "precision": 2}'
 # Response: {"result": "1.2", "error": null}
@@ -72,7 +72,7 @@ curl -X POST http://localhost:3030/v4/ \
 Health check endpoint voor monitoring.
 
 ```bash
-curl http://localhost:3030/health
+curl http://localhost:3031/health
 # Response: {"status": "OK", "timestamp": "2024-01-15T10:30:00.000Z"}
 ```
 
@@ -95,7 +95,7 @@ curl http://localhost:3030/health
    npm run dev
    ```
 
-The server runs on port 3030 by default.
+The server runs on port 3031 by default.
 
 ### Docker
 
@@ -125,20 +125,20 @@ The server runs on port 3030 by default.
 
 2. **Start container:**
    ```bash
-   docker run -d -p 3030:3030 --name mathjs-api-server mathjs-api
+   docker run -d -p 3031:3031 --name mathjs-api-server mathjs-api
    ```
 
 ## Configuration
 
 ### Environment Variables
 
-- `PORT`: Port on which the server runs (default: 3030)
+- `PORT`: Port on which the server runs (default: 3031)
 - `NODE_ENV`: Environment (development/production)
 
 ### Docker Compose customizations
 
 In `docker-compose.yml` you can modify:
-- **Port mapping**: Change `"3030:3030"` to desired external port
+- **Port mapping**: Change `"3031:3031"` to desired external port
 - **Traefik labels**: For reverse proxy setup
 - **Network configuration**: For integration with existing networks
 
@@ -200,13 +200,13 @@ Docker automatically performs health checks:
    Change the external port in `docker-compose.yml`:
    ```yaml
    ports:
-     - "3031:3030"  # Use port 3031 instead of 3030
+     - "3031:3031"  # Use port 3031 instead of 3031
    ```
 
 3. **Expression errors:**
    Check if the expression is valid:
    ```bash
-   curl -X POST http://localhost:3030/v4/ \
+   curl -X POST http://localhost:3031/v4/ \
      -H "Content-Type: application/json" \
      -d '{"expr": "invalid expression"}'
    ```
